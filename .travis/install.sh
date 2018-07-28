@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 error_exit() {
-    echo "quitting"
+    message="ERROR: Command '$BASH_COMMAND' exited with code '$?'"
+    set +x
+    echo "$message"
     exit 1
 }
 
@@ -13,10 +15,11 @@ install_pyenv() {
         eval "$(pyenv init -)"
         pyenv install -s "$PYENV_VERSION"
         pyenv rehash
+        python -m pip install wheel
     fi
 }
 
 trap "error_exit" ERR
 install_pyenv
-python -m pip install wheel
+
 

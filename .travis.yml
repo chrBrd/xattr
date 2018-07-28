@@ -37,6 +37,6 @@ deploy:
     repo: xattr/xattr
     tags: true
   skip_cleanup: true
-after_failure: "cat config.log"
+
 
 

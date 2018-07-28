@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
+#set -e
+trap "exit 1" ERR
 set -x
 
 if [[ -n "$PYENV_VERSION" ]]; then

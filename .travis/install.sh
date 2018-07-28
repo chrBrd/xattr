@@ -1,7 +1,15 @@
 #!/bin/bash
 
 #set -e
-trap "exit 1" ERR
+
+foo() {
+    echo "quitting"
+    cat config.log
+    exit 1
+}
+
+
+trap "foo" ERR
 set -x
 
 if [[ -n "$PYENV_VERSION" ]]; then

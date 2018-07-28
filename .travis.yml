@@ -3,19 +3,19 @@ cache:
   directories:
   - "$HOME/.cache/pip"
   - "$HOME/.pyenv"
-python:
-  - '3.7'
-  - '3.6'
-  - '3.5'
-  - '2.7'
-env:
-  - BUILD_SDIST=true
-  - BUILD_SDIST=
+#python:
+#  - '3.7'
+#  - '3.6'
+#  - '3.5'
+#  - '2.7'
+#env:
+#  - BUILD_SDIST=true
+#  - BUILD_SDIST=
 # Python not working properly with OSX - see https://github.com/travis-ci/travis-ci/issues/9744
-os:
-  - linux
-dist: xenial
+#os:
+#  - linux
 #  - osx
+#dist: xenial
 #osx_image: xcode9.4
 matrix:
   include:

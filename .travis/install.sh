@@ -7,7 +7,7 @@ if [[ -n "$PYENV_VERSION" ]]; then
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         brew update
         brew upgrade readline openssl
-        brew install expat xz
+        brew install expat xz gcc
         brew upgrade pyenv
     fi
     eval "$(pyenv init -)"

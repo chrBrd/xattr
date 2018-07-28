@@ -7,23 +7,16 @@ error_exit() {
 
 install_pyenv() {
     set -x
-    if [[ -n "$PYENV_VERSION" ]]; then
-        if [[ "$TRAVIS_OS_NAME" == 'osx' ]]; then
-            brew update  > /dev/null
-            brew upgrade readline openssl pyenv
-        fi
+    if [[ -n "$PYENV_VERSION" && "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew update  > /dev/null
+        brew upgrade readline openssl pyenv
         eval "$(pyenv init -)"
-        if [[ "$TRAVIS_OS_NAME" == 'osx' ]]; then
-            pyenv install -s "$PYENV_VERSION"
-        else
-            pyenv install -s "$PYENV_VERSION"
-        fi
+        pyenv install -s "$PYENV_VERSION"
         pyenv rehash
-        python -m pip install wheel
     fi
 }
 
 trap "error_exit" ERR
-#install_pyenv
+install_pyenv
 python -m pip install wheel
 

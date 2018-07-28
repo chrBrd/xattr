@@ -10,28 +10,30 @@ python:
   - '2.7'
 env:
   - BUILD_SDIST=true
+  - BUILD_SDIST=
+# Python not working properly with OSX - see https://github.com/travis-ci/travis-ci/issues/9744
 os:
   - linux
-  - osx
-osx_image: xcode9.4
-#matrix:
-#  include:
-#  - os: osx
-#    language: generic
-#    env: PYENV_VERSION=3.7.0 BUILD_SDIST=true
-#    osx_image: xcode_9.4
-#  - os: osx
-#    language: generic
-#    env: PYENV_VERSION=2.7.15
-#    osx_image: xcode_9.4
-#  - os: osx
-#    language: generic
-#    env: PYENV_VERSION=3.6.5
-#    osx_image: xcode_9.4
-#  - os: osx
-#    language: generic
-#    env: PYENV_VERSION=pypy3.5-6.0.0-src
-#    osx_image: xcode_9.4
+#  - osx
+#osx_image: xcode9.4
+matrix:
+  include:
+  - os: osx
+    language: generic
+    env: PYENV_VERSION=3.7.0 BUILD_SDIST=true
+    osx_image: xcode_9.4
+  - os: osx
+    language: generic
+    env: PYENV_VERSION=2.7.15
+    osx_image: xcode_9.4
+  - os: osx
+    language: generic
+    env: PYENV_VERSION=3.6.5
+    osx_image: xcode_9.4
+  - os: osx
+    language: generic
+    env: PYENV_VERSION=pypy3.5-6.0.0-src
+    osx_image: xcode_9.4
 install:
 - "./.travis/install.sh"
 script:

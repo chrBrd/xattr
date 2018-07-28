@@ -20,8 +20,7 @@ if [[ -n "$PYENV_VERSION" ]]; then
         brew install expat xz gcc
         brew upgrade pyenv
     fi
-    pyenv init
-    #eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
     #pyenv install --list
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         #CFLAGS="-I$(xcrun --show-sdk-path)/usr/include /usr/local/opt/expat/include $CFLAGS" \

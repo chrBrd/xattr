@@ -4,7 +4,7 @@
 
 foo() {
     echo "quitting"
-    cat config.log
+    #cat config.log
     exit 1
 }
 
@@ -20,10 +20,11 @@ if [[ -n "$PYENV_VERSION" ]]; then
         brew install expat xz gcc
         brew upgrade pyenv
     fi
-    eval "$(pyenv init -)"
-    pyenv install --list
+    pyenv init
+    #eval "$(pyenv init -)"
+    #pyenv install --list
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include /usr/local/opt/expat/include $CFLAGS" \
+        #CFLAGS="-I$(xcrun --show-sdk-path)/usr/include /usr/local/opt/expat/include $CFLAGS" \
         pyenv install -s "$PYENV_VERSION"
     else
         pyenv install -s "$PYENV_VERSION"

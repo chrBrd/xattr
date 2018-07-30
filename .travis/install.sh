@@ -1,23 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
-set -x
+error_exit() {
+    message="ERROR: Command '$BASH_COMMAND' exited with code '$?'"
+    set +x
+    echo "$message"
+    exit 1
+}
 
-if [[ -n "$PYENV_VERSION" ]]; then
-    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        brew update
-        brew upgrade readline openssl
-        brew install expat xz
-        brew upgrade pyenv
-    fi
-    eval "$(pyenv init -)"
-    pyenv install --list
-    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include /usr/local/opt/expat/include $CFLAGS" \
+install_pyenv() {
+    set -x
+    if [[ -n "$PYENV_VERSION" && "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew update  > /dev/null
+        brew upgrade readline openssl pyenv
+        eval "$(pyenv init -)"
         pyenv install -s "$PYENV_VERSION"
-    else
-        pyenv install -s "$PYENV_VERSION"
+        pyenv rehash
+        python -m pip install wheel
     fi
-    pyenv rehash
-    python -m pip install wheel
-fi
+}
+
+trap "error_exit" ERR
+install_pyenv
+
+

@@ -1,6 +1,4 @@
 include *.py
-include xattr/*.c
-include xattr/*.h
 include *.txt
 include MANIFEST.i
 include xattr/tests/*.py
